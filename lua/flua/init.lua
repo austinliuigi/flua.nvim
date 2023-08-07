@@ -64,7 +64,7 @@ function flua:_initialize()
     vim.cmd('execute "normal! vip\\<esc>"')
 
     -- write desired command(s) to temp source file
-    vim.cmd("'<,'>w! " .. self.source_file)
+    vim.cmd("silent '<,'>w! " .. self.source_file)
 
     self:_close()
 
@@ -77,7 +77,7 @@ function flua:_initialize()
     vim.api.nvim_feedkeys(esc, 'nx', false) -- 'x' mode makes feedkeys synchronous
 
     -- write desired command(s) to temp source file
-    vim.cmd("'<,'>w! " .. self.source_file)
+    vim.cmd("silent '<,'>w! " .. self.source_file)
 
     self:_close()
 
@@ -103,7 +103,7 @@ function flua:_open()
   -- format buffer so that commands are separated by one empty line
   if vim.fn.line('$') ~= 1 or vim.fn.match(vim.fn.getline(1), "^\\s*$") == -1 then
     utils.remove_eof_whitespace()
-    vim.cmd('execute "normal! Go\\<CR>\\<esc>"')
+    vim.cmd('silent execute "normal! Go\\<CR>\\<esc>"')
     vim.cmd('silent w')
   end
   vim.cmd("normal! zz")

@@ -52,17 +52,9 @@ function utils.remove_eof_whitespace()
   -- save position
   local pos = vim.fn.getcurpos()
   -- remove whitespace
-  vim.cmd('execute "normal! Go\\<esc>dip"')
+  vim.cmd('silent execute "normal! Go\\<esc>dip"')
   -- restore position
   vim.fn.setpos('.', pos)
-end
-
----Gets previously focused window's handle
-function utils.get_prev_win()
-  vim.cmd("wincmd p")
-  local win = vim.api.nvim_get_current_win()
-  vim.cmd("wincmd p")
-  return win
 end
 
 return utils
